@@ -38,7 +38,7 @@ const getAppHttpUrl = async () => {
 function resetEnvDyldVar(oldEnvVar) {
   if (oldEnvVar){
     // revert the env var to the old value
-    process.env.SIMCTL_CHILD_DYLD_INSERT_LIBRARIES = oldVar;
+    process.env.SIMCTL_CHILD_DYLD_INSERT_LIBRARIES = oldEnvVar;
   } else {
     // old env var was never defined, so we delete it
     delete process.env.SIMCTL_CHILD_DYLD_INSERT_LIBRARIES;
@@ -85,8 +85,8 @@ const reloadApp = async (params) => {
     launchArgs: { EXKernelDisableNuxDefaultsKey: true, detoxURLBlacklistRegex: formattedBlacklistArg },
   });
 
-  
-  if (semver.lt(detoxVersion, '9.0.6')){ 
+
+  if (semver.lt(detoxVersion, '9.0.6')){
     // we will need to pass in blacklist again before it was supported at init in 9.0.6
     await blacklistLiveReloadUrl(params && params.urlBlacklist);
   } else {
@@ -119,7 +119,7 @@ const blacklistCmdlineFormat = async (userBlacklist) => {
   const expoBlacklist = await getBlacklist();
   const blacklist = userBlacklist ? expoBlacklist.concat(userBlacklist) : expoBlacklist;
   const cmdlineFormatBlacklist = blacklist.map(url => `"${url}"`).join(",");
-  return `\\(${cmdlineFormatBlacklist}\\)`; 
+  return `\\(${cmdlineFormatBlacklist}\\)`;
 };
 
 const blacklistLiveReloadUrl = async (userBlacklist) => {
