@@ -84,12 +84,17 @@ const reloadApp = async (params) => {
     url = await getAppUrl();
   }
 
+  let launchArgs = { EXKernelDisableNuxDefaultsKey: true, detoxURLBlacklistRegex: formattedBlacklistArg };
+  if (params && params.launchArgs) {
+    launchArgs = { ...launchArgs, ...params.launchArgs}
+  }
+
   await device.launchApp({
     permissions: params && params.permissions,
     newInstance: true,
     url,
+    launchArgs,
     sourceApp: 'host.exp.exponent',
-    launchArgs: { EXKernelDisableNuxDefaultsKey: true, detoxURLBlacklistRegex: formattedBlacklistArg },
   });
 
 
@@ -117,7 +122,7 @@ function escapeRegExp(str) {
 const getBlacklist = async () => {
   const httpUrl = await getAppHttpUrl();
   const liveReloadUrl = `${httpUrl}/onchange`;
-  const fabricUrl = 'https://e.crashlytics.com/spi/v2/events';
+  const fabricUrl = 'https://app-measurement.com/a';
   return [liveReloadUrl, fabricUrl];
 };
 
