@@ -1,12 +1,12 @@
 {
   "name": "@ruddell/detox-expo-helpers",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
-    "child-process-promise": "^2.2.1",
     "@expo/xdl": "^59.1.0",
+    "child-process-promise": "^2.2.1",
     "semver": "7.3.5"
   }
 }
