@@ -1,5 +1,5 @@
 {
-  "name": "detox-expo-helpers",
+  "name": "@ruddell/detox-expo-helpers",
   "version": "0.6.0",
   "main": "index.js",
   "license": "MIT",
